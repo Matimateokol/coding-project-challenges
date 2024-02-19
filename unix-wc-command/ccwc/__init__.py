@@ -6,7 +6,6 @@ class ccwc():
             if(command == "exit"):
                 break
             else:
-                # print(command)
                 first_part = command[0:7]
                 if(first_part == "ccwc -c"):
                     filename = command[8:]
