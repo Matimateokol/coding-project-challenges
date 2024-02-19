@@ -21,7 +21,13 @@ class ccwc():
                 elif(first_part == "ccwc -m"):
                     chars = ccwc.count_chars(filepath)
                     print(f"  {chars} {filename}")
-                
+                elif(first_part[0:4] == "ccwc"):
+                    filename = command[5:]
+                    filepath = f"./unix-wc-command/input/{filename}"
+                    bytes = ccwc.read_bytes_size(filepath)
+                    lines = ccwc.count_lines(filepath)
+                    words = ccwc.count_words(filepath)
+                    print(f"  {lines} {words} {bytes} {filename}")
 
     def read_bytes_size(file_name):
         try:
