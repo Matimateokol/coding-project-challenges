@@ -7,14 +7,16 @@ class ccwc():
                 break
             else:
                 first_part = command[0:7]
-                if(first_part == "ccwc -c"):
-                    filename = command[8:]
+                filename = command[8:]
+                if(first_part == "ccwc -c"):                    
                     bytes = ccwc.read_bytes_size(f"./unix-wc-command/input/{filename}")
                     print(f"  {bytes} {filename}")
                 elif(first_part == "ccwc -l"):
-                    filename = command[8:]
                     lines = ccwc.count_lines(f"./unix-wc-command/input/{filename}")
                     print(f"  {lines} {filename}")
+                elif(first_part == "ccwc -w"):
+                    words = ccwc.count_words(f"./unix-wc-command/input/{filename}")
+                    print(f"  {words} {filename}")
                 
 
     def read_bytes_size(file_name):
@@ -34,6 +36,19 @@ class ccwc():
                 for line in file:
                     line_count += 1
             return line_count
+        except FileNotFoundError:
+            print("File not found!")
+        except Exception as e:
+            print("An error occurred:", e)
+
+    def count_words(file_name):
+        try:
+            with open(file_name, 'rb') as file:
+                word_count = 0
+                for line in file:
+                    words = line.split()
+                    word_count += len(words)
+            return word_count
         except FileNotFoundError:
             print("File not found!")
         except Exception as e:
