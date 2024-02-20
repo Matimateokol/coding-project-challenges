@@ -8,6 +8,8 @@ class ccwc():
             else:
                 first_part = command[0:7]
                 filename = command[8:]
+                if(len(filename) == 0):
+                    filename = input("filename: ") 
                 filepath = f"./unix-wc-command/input/{filename}"
                 if(first_part == "ccwc -c"):                    
                     bytes = ccwc.read_bytes_size(filepath)
